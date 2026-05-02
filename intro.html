@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Dreamr - Loading</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vampiro+One&family=Klee+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #663399 50%, #000000 100%);
+            font-family: 'Klee One', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #6495ED;
+        }
+
+        /* Cosmic Stars Background */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-family: 'Vampiro One', cursive;
+            font-size: 3.5rem;
+            color: #6495ED;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(100, 149, 237, 0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(100, 149, 237, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(102, 51, 153, 0.8); }
+        }
+
+        .hint {
+            font-size: 1.2rem;
+            color: #6495ED;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: 40px auto;
+            background: linear-gradient(45deg, #6495ED, #663399);
+            border-radius: 100%;
+            animation: spin 2s linear infinite;
+            box-shadow: 0 0 20px rgba(100, 149, 237, 0.6);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.1rem;
+            color: #6495ED;
+            letter-spacing: 3px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            padding: 12px 24px;
+            border: 2px solid #6495ED;
+            color: #6495ED;
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Vampiro One', cursive;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(100, 149, 237, 0.3);
+        }
+
+        nav a:hover {
+            background-color: #6495ED;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(100, 149, 237, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Redirect Info */
+        .redirect-info {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            color: #6495ED;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hint {
+                font-size: 1rem;
+            }
+
+            nav {
+                bottom: 20px;
+                gap: 10px;
+            }
+
+            nav a {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .redirect-info {
+                top: 20px;
+                right: 20px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="starsContainer"></div>
+
+    <div class="container">
+        <h1>Café Dreamr</h1>
+        
+        <div class="hint">
+            ✨ Welcome to a realm of creative content, inspiration, and digital dreams ✨
+            <br><br>
+            Explore stories, tutorials, and visuals crafted with passion.
+        </div>
+
+        <div class="spinner"></div>
+        <p class="loading-text">LOADING...</p>
+    </div>
+
+    <nav>
+        <a href="https://cafedreamr.pika.page/" target="_blank">📖 Blog</a>
+        <a href="https://www.youtube.com/@cafedreamer" target="_blank">▶️ YouTube</a>
+        <a href="https://cafedreamr.pika.page/" id="directLink">🚀 Enter</a>
+    </nav>
+
+    <div class="redirect-info">
+        Redirecting in <span id="countdown">5</span>s
+    </div>
+
+    <script>
+        // Generate Random Stars
+        function generateStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            const starCount = 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Auto-redirect after 5 seconds
+        let count = 5;
+        const countdownElement = document.getElementById('countdown');
+
+        const interval = setInterval(() => {
+            count--;
+            countdownElement.textContent = count;
+
+            if (count === 0) {
+                clearInterval(interval);
+                window.location.href = 'https://cafedreamr.pika.page/';
+            }
+        }, 1000);
+
+        // Initialize stars on page load
+        window.addEventListener('load', generateStars);
+    </script>
+</body>
+</html>
