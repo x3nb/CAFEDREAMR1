@@ -1,1 +1,48 @@
-more soon!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Vampiro+One&display=swap" rel="stylesheet">
+    <title>Teacup Loading</title>
+    <style>
+        body {
+            background-color: #6A0DAD; /* Deep purple */
+            color: cornflowerblue; /* Cornflower blue */
+            font-family: 'Vampiro One', cursive;
+            text-align: center;
+            overflow: hidden;
+        }
+        #teacup {
+            cursor: pointer;
+            width: 100px;
+            transition: transform 0.2s;
+        }
+        #loadingMessage {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            font-size: 20px;
+            animation: scroll 10s linear infinite;
+        }
+        @keyframes scroll {
+            from { transform: translateY(100%); }
+            to { transform: translateY(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Loading...</h1>
+    <img id="teacup" src="data:image/svg+xml;base64,PD94bWwgdmFyaWFudCAyLjEuMSwgQ3JlYXRlZCByb290IHZlcnNpb24xLjA8c3ZnIHdpZHRoPSIwMTAuMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAuMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw"> <!-- Add your animated SVG teacup base64 here -->
+    <div id="loadingMessage">Please wait while we brew your tea...</div>
+    <script>
+        const teacup = document.getElementById('teacup');
+        teacup.addEventListener('click', () => {
+            teacup.style.transform = 'translateY(5px)';
+            setTimeout(() => {
+                teacup.style.transform = 'translateY(0)';
+            }, 200);
+        });
+    </script>
+</body>
+</html>
