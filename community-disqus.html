@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cafe Dreamr Community</title>
+
+<!-- Google Fonts & Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Gothic+A1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<style>
+  /* Basic Reset & Body Styles */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+   body {
+    font-family: 'Gothic A1', cursive;
+    position: relative;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #4a6fa5, #1b2b3a, #000);
+    overflow-x: hidden;
+    color: #eee;
+  }
+
+  /* Loading Screen */
+  #loading {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #1a1a1a;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; z-index: 9999;
+    font-family: 'Great Vibes', cursive; font-size: 2em; color: #999;
+  }
+  #loading h1 { margin-bottom: 20px; animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Main Content Hidden Initially */
+  #main { display: none; }
+
+  /* Header Styling */
+  .header {
+    text-align: center;
+    padding: 50px 20px 20px 20px;
+    background: linear-gradient(135deg, #222, #111);
+  }
+  .header h1 {
+    font-family: 'Gothic A1', cursive;
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #ccc;
+  }
+  .poem {
+    font-size: 1.2em;
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #999;
+    line-height: 1.5;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Slider Styles */
+  .slider {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    margin-top: 40px;
+    width: 100%;
+  }
+  .slides {
+    display: flex;
+    width: 6400px; /* 4 images * 1600px each */
+    animation: slide 20s linear infinite;
+  }
+  .slide {
+    flex: 0 0 1600px;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+  }
+ 
+  .slide1 { background-image: url('https://3society.neocities.org/PARIS.OCT25/images/Stellar111.jpeg'); }
+  .slide2 { background-image: url('https://3society.neocities.org/PARIS.OCT25/images/7.jpeg'); }
+  .slide3 { background-image: url('https://3society.neocities.org/PARIS.OCT25/images/Stellar111.jpeg'); }
+  .slide4 { background-image: url('https://via.placeholder.com/1600x500/555/ccc?text=Fashion+4'); }
+
+  @keyframes slide {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(0); }
+    25% { transform: translateX(-1600px); }
+    45% { transform: translateX(-1600px); }
+    50% { transform: translateX(-3200px); }
+    70% { transform: translateX(-3200px); }
+    75% { transform: translateX(-4800px); }
+    95% { transform: translateX(-4800px); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Playlist Section */
+  #music-section {
+    text-align: center;
+    padding: 30px;
+    background: #222;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 50px auto;
+  }
+  #music-section h3 { color: #ccc; margin-bottom: 15px; }
+  #music {
+    display: none;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .controls {
+    margin-top: 15px;
+  }
+  .controls button {
+    margin: 0 8px;
+    padding: 10px 20px;
+    font-family: 'Gothic A1', sans-serif;
+    background: #444;
+    color: #ccc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .controls button:hover { background: #555; transform: scale(1.05); }
+
+  #shareMsg {
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2em;
+    color: #ccc;
+    margin-top: 10px;
+    display: none;
+  }
+
+  /* Community Section */
+  #community {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 10px;
+  }
+  #community h2 {
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ccc;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0d0d0d;
+    color: #555;
+    font-size: 0.9em;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading">
+  <h1>Cafe Dreamr Community</h1>
+  <p>Loading the cafe's dreams...</p>
+</div>
+
+<!-- Main Content -->
+<div id="main">
+
+  <!-- Header with Poem -->
+  <div class="header">
+    <h1>Cafe-Dreamr's In Motion</h1>
+    <div class="poem" style="animation: fadeInUp 2s ease-in-out;">
+      <p>In a place where dreamers unite,<br>
+      Creation beckons to shape into flight.<br>
+      Our thoughts combined to create anew,<br>
+      Foundation in our dreamr's cafe.</p>
+    </div>
+  </div>
+
+  <!-- Moving Images Slider -->
+  <div class="slider">
+    <div class="slides">
+      <div class="slide slide1"></div>
+      <div class="slide slide2"></div>
+      <div class="slide slide3"></div>
+      <div class="slide slide4"></div>
+    </div>
+  </div>
+
+  <!-- Playlist with toggle and share -->
+  <section id="music-section">
+    <h3>Mood Playlist</h3>
+    <audio id="music" src="https://github.com/x3nb/Soundcafe/blob/1ac3d7195241577f99db392446d3c0b7f30f4dc2/starlightcafe.mp3"></audio>
+    <div class="controls">
+      <button id="playBtn" title="Play"><i class="fas fa-play"></i></button>
+      <button id="stopBtn" title="Stop"><i class="fas fa-stop"></i></button>
+      <button id="shareBtn" title="Share"><i class="fas fa-share-alt"></i></button>
+    </div>
+    <div id="shareMsg">Link copied to clipboard!</div>
+  </section>
+
+  <!-- Community Discussion -->
+  <section id="community">
+    <h2>Join the Conversation</h2>
+    <!-- Disqus Thread Placeholder -->
+    <div id="disqus_thread"></div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2024 Spider Trend Attire. All rights reserved.
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Hide loading after 2 seconds, show main content
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+    }, 2000);
+  });
+
+  // Playlist controls
+  const audio = document.getElementById('music');
+  const playBtn = document.getElementById('playBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const shareMsg = document.getElementById('shareMsg');
+
+  // Play button
+  document.getElementById('playBtn').onclick = () => {
+    audio.style.display = 'block';
+    audio.play();
+  };
+  // Stop button
+  document.getElementById('stopBtn').onclick = () => {
+    audio.pause();
+    audio.currentTime = 0;
+    audio.style.display = 'none';
+  };
+  // Share button
+  document.getElementById('shareBtn').onclick = () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      shareMsg.style.display = 'block';
+      setTimeout(() => { shareMsg.style.display = 'none'; }, 2000);
+    });
+  };
+
+  // Disqus embed script (replace 'YOUR_DISQUS_SHORTNAME')
+  var disqus_config = function () {
+    this.page.url = window.location.href;  // Current page URL
+    this.page.identifier = 'fashion-community'; // Unique ID for this page
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://shrinkingviolets.disqus.com/embed.js'; // <-- Replace this
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+</body>
+</html>
