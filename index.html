@@ -1,49 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacup Loading</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vampiro+One&display=swap" rel="stylesheet">
+    <title>CafeDreamr Loading Page</title>
     <style>
         body {
+            background-color: #5c4b8a; /* Deep purple */
+            font-family: 'Vampiro One', cursive;
+            color: cornflowerblue;
+            text-align: center;
             margin: 0;
-            height: 100%;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: deeppurple;
+        }
+
+        #teacup {
+            width: 200px;
+            height: 200px;
+            background-image: url('https://example.com/teacup.png'); /* replace with actual teacup image URL */
+            background-size: cover;
+            animation: tilt 2s infinite alternate;
+        }
+
+        @keyframes tilt {
+            from { transform: rotate(10deg); }
+            to { transform: rotate(-10deg); }
+        }
+
+        .title {
+            display: block;
+            margin-top: 20px;
+            font-size: 2em;
+            text-decoration: none;
             color: cornflowerblue;
-            font-family: 'Vampiro One', cursive;
-        }
-        .teacup {
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .teacup:active {
-            transform: translateY(5px);
-        }
-        .scroll-message {
-            position: absolute;
-            bottom: 20%;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: scroll 10s linear infinite;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
         }
     </style>
 </head>
 <body>
-    <h1>CAFE DREAMR</h1>
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' class='teacup'%3E%3Cpath d='M30 40 L70 40 C80 40, 90 50, 70 70 C50 90, 50 70, 30 70 Z' fill='cornflowerblue' /%3E%3C/svg%3E" class='teacup' onclick='this.style.transform="translateY(5px)"; setTimeout(()=>{this.style.transform=""}, 200);' />
-    <div class='scroll-message'>Loading your dream cafe...</div>
-    <script>
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 7000);
-    </script>
+    <div id="teacup"></div>
+    <a href="https://cafedreamr.art" class="title">CafeDreamr</a>
 </body>
 </html>
